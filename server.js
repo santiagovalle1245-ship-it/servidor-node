@@ -9,16 +9,16 @@ const servidor = http.createServer((req, res) => {
 
 //Manejo de diferentes rutas
     if(req.url === '/'){
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Pagina de principal.');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('<h1>Pagina de principal.</h1>');
     } 
     else if(req.url === '/acerca'){
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Esta es la pagina de acerca de.');
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.end('<p>Esta es la pagina de acerca de.</p>');
     }
     else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.end('Pagina no encontrada.');
+    res.writeHead(404, { 'Content-Type': 'text/html' });
+    res.end('<h1>Pagina no encontrada.</h1>');
     }
 });
 
