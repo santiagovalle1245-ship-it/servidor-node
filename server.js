@@ -1,7 +1,8 @@
 //Importar el modulo HTTP
+const { error } = require('console');
 const http = require('http');
 
-const fs = require('fs');
+const fs = require('fs').promises;
 //Definir el puerto en el que se ejecutara el servidor
 const PORT = 3000;
 
@@ -9,18 +10,17 @@ const PORT = 3000;
 const servidor = http.createServer((req, res) => {
 
     //Lectura asincrona: no bloquea el Evento Loop
-    fs.readFile('./index.html', (err, data) => {
-        if (err) {
-            res.statusCode = 500;
-            res.end('Error al leer el archivo');;
-            return;
+    fs.readFile('./index.html', 'utf-8')
+        .then(
+            data => {console.log('Ejecucion con extito', data);}
+        )
+        .catch
+        err => 
+        {
+            console.log('Error en la lectura del archivo', err);
         }
-
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.end(data);
     })
-});
+
 
 //Iniciar el servidor
 servidor.listen(PORT, () => {
